@@ -127,7 +127,7 @@
                             <h5>
                                 <p>Jumlah Total Positif di Dunia</p>
                             </h5>
-                            <span data-toggle="counter-up"><?php echo $posglobal['value']; ?></span>
+                            {{-- <span data-toggle="counter-up"><?php echo $posglobal['value']; ?></span> --}}
                             <p>Orang</p>
                         </div>
                     </div>
