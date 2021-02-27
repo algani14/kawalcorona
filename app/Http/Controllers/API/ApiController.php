@@ -16,28 +16,28 @@ use GuzzleHttp\Client;
 class ApiController extends Controller
 {
     public $data = [];
-    // public function global()
-    // {
+    public function global()
+    {
         
-    //     $response = Http::get( 'https://api.kawalcorona.com/global/' )->json();
-    //     foreach ($response as $data => $val){
-    //         $raw =$val['attributes'];
-    //         $res = [
-    //             'Negara' => $raw['Country_Region'],
-    //             'Positif' => $raw ['Confirmed'],
-    //             'Sembuh' => $raw ['Recovered'],
-    //             'meninggal' => $raw ['Deaths']
-    //         ];
-    //         array_push($this->data, $res);
-    //      }
-    //         $data = [
-    //             'success' => true,
-    //             'data' => $this->data,
-    //             'message' => 'berhasil'
-    //         ];
-    //         return response()->json($data,200);
+        $response = Http::get( 'https://api.kawalcorona.com/global/' )->json();
+        foreach ($response as $data => $val){
+            $raw =$val['attributes'];
+            $res = [
+                'Negara' => $raw['Country_Region'],
+                'Positif' => $raw ['Confirmed'],
+                'Sembuh' => $raw ['Recovered'],
+                'meninggal' => $raw ['Deaths']
+            ];
+            array_push($this->data, $res);
+         }
+            $data = [
+                'success' => true,
+                'data' => $this->data,
+                'message' => 'berhasil'
+            ];
+            return response()->json($data,200);
 
-    // }
+    }
     
     public function provinsi()
     {
@@ -79,9 +79,10 @@ class ApiController extends Controller
         return response([
             'success' => true,
             'data' => [
+                [
                         'Hari Ini' => $toDay,
                         'Semua' => $allDay,
-                        ],
+            ]],
             'message' => 'berhasil'
         ]);
 
@@ -149,10 +150,11 @@ class ApiController extends Controller
         return response([
             'success' => true,
             'data' => [
+                [
                         'Hari Ini' => $toDay,
                         'Semua' => $allDay
 
-                        ],
+            ]],
             'message' => 'berhasil'
         ]);
 
@@ -217,9 +219,10 @@ class ApiController extends Controller
         return response([
             'success' => true,
             'data' => [
+                    [
                         'Hari Ini' => $toDay,
                         'Semua' =>$allDay
-                        ],
+            ]],
             'message' => 'berhasil'
         ]);
 
@@ -281,9 +284,10 @@ class ApiController extends Controller
         return response([
             'success' => true,
             'data' => [
+                [
                         'Hari Ini' => $toDay,
                         'Semua' => $allDay
-                        ],
+            ]],
             'message' => 'berhasil'
         ]);
 
@@ -341,10 +345,10 @@ class ApiController extends Controller
         // dd($rw);
         return response([
             'success' => true,
-            'data' => [
+            'data' => [[
                         'Hari Ini' => $toDay,
                         'Semua' => $allDay
-                        ],
+            ]],
             'message' => 'berhasil'
         ]);
 
@@ -379,13 +383,13 @@ class ApiController extends Controller
           ->select('kasuses.positif')
           ->sum ('kasuses.positif');
           
-        return response([
+        return response([[
             'success' => true,
             'data' => ['name' => 'total positif',
             'value' => $positif,
                     ],       
             'message' => 'Berhasil'
-        ], 200);
+        ]], 200);
     }      
       
     public function sembuh()
@@ -394,13 +398,13 @@ class ApiController extends Controller
           ->select('kasuses.sembuh')
           ->sum ('kasuses.sembuh');
           
-          return response([
+          return response([[
             'success' => true,
             'data' => ['name' => 'total sembuh',
             'value' => $sembuh,
                     ],       
             'message' => 'Berhasil'
-        ], 200);
+        ]], 200);
     }
     
     public function meninggal()
@@ -409,13 +413,13 @@ class ApiController extends Controller
           ->select('kasuses.meninggal')
           ->sum ('kasuses.meninggal');
           
-          return response([
+          return response([[
             'success' => true,
             'data' => ['name' => 'total meninggal',
             'value' => $meninggal,
                     ],       
             'message' => 'Berhasil'
-        ], 200);
+        ]], 200);
     }
     public function indonesia()
     {
@@ -428,12 +432,13 @@ class ApiController extends Controller
         'success' => true,
         
         'Total' =>[
+            [
                     'Jumlah Reaktif' => $reaktif,
                     'Jumlah Positif' => $positif,
                     'Jumlah Sembuh' => $sembuh,
                     'Jumlah Meninggal' => $meninggal,
                 ],
-    ]);
+    ]]);
     }
 }
   
