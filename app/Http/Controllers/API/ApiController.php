@@ -16,28 +16,28 @@ use GuzzleHttp\Client;
 class ApiController extends Controller
 {
     public $data = [];
-    public function global()
-    {
+    // public function global()
+    // {
         
-        $response = Http::get( 'https://api.kawalcorona.com/global/' )->json();
-        foreach ($response as $data => $val){
-            $raw =$val['attributes'];
-            $res = [
-                'Negara' => $raw['Country_Region'],
-                'Positif' => $raw ['Confirmed'],
-                'Sembuh' => $raw ['Recovered'],
-                'meninggal' => $raw ['Deaths']
-            ];
-            array_push($this->data, $res);
-         }
-            $data = [
-                'success' => true,
-                'data' => $this->data,
-                'message' => 'berhasil'
-            ];
-            return response()->json($data,200);
+    //     $response = Http::get( 'https://api.kawalcorona.com/global/' )->json();
+    //     foreach ($response as $data => $val){
+    //         $raw =$val['attributes'];
+    //         $res = [
+    //             'Negara' => $raw['Country_Region'],
+    //             'Positif' => $raw ['Confirmed'],
+    //             'Sembuh' => $raw ['Recovered'],
+    //             'meninggal' => $raw ['Deaths']
+    //         ];
+    //         array_push($this->data, $res);
+    //      }
+    //         $data = [
+    //             'success' => true,
+    //             'data' => $this->data,
+    //             'message' => 'berhasil'
+    //         ];
+    //         return response()->json($data,200);
 
-    }
+    // }
     
     public function provinsi()
     {
